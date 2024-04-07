@@ -41,7 +41,7 @@ class CartController extends Controller
 
     public function getPersonal(Request $request)
     {
-        $personalDetails = $request->session()->get('personalDetails', []);
+        $personalDetails = $request->session()->get('personalDetails', null);
         return response()->json(['personal_details' => $personalDetails]);
 
     }
@@ -81,7 +81,7 @@ class CartController extends Controller
             return response()->json(['message' => 'addressType is required']);
         }
         $session_name = $request->addressType == 'shipping' ? 'shipping-address' : 'address';
-        $address = $request->session()->get($session_name, []);
+        $address = $request->session()->get($session_name, null);
         return response()->json(['address' => $address]);
 
     }
